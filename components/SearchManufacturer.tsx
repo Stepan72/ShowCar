@@ -107,5 +107,3 @@ function SearchManufacturer({
 }
 
 export default SearchManufacturer;
-
-/// 1:02:42
