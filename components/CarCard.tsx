@@ -10,9 +10,9 @@ interface CarCardProps {
 }
 
 function CarCard({ car }: CarCardProps) {
-  const { city_mpg, make, model, transmission, year } = car;
+  const { city_mpg, make, model, transmission, year, drive } = car;
   const carRent = calculateCarRent(city_mpg, year);
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="car-card group">
       <div className="car-card__content">
@@ -59,17 +59,27 @@ function CarCard({ car }: CarCardProps) {
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
             <Image
-              src="/assets/steering-wheel.svg"
+              src="/assets/gas.svg"
               width={20}
               height={20}
               alt="steering-img"
             />
-            <p className="text-[14px]">
-              {transmission === "a" ? "Automatic" : "Manual"}
-            </p>
+            <p className="text-[14px]">{city_mpg} MPG</p>
           </div>
         </div>
+        <div className="car-card__btn-container ">
+          <CustomButton
+            title="View More"
+            containerStyles="w-full py-[16px] rounded-full bg-primary-blue "
+            rightIcon="/assets/right-arrow.svg"
+            textStyles="text-white text-[14px] leading-[17px] font-bold"
+            handleClick={() => {
+              setIsOpen(true);
+            }}
+          />
+        </div>
       </div>
+      {isOpen && <CardDetails />}
     </div>
   );
 }
