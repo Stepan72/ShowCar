@@ -5,6 +5,7 @@ import { CarProps } from "@/types";
 import { CustomButton } from ".";
 import { calculateCarRent } from "@/utils";
 import { CarDetails } from ".";
+import { generateCarImageUrl } from "@/utils";
 
 interface CarCardProps {
   car: CarProps;
@@ -29,7 +30,8 @@ function CarCard({ car }: CarCardProps) {
 
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src="/assets/hero.png"
+          //   src="/assets/hero.png"
+          src={generateCarImageUrl(car)}
           alt="car-model"
           fill
           priority
@@ -92,5 +94,3 @@ function CarCard({ car }: CarCardProps) {
 }
 
 export default CarCard;
-
-///1:39:00
