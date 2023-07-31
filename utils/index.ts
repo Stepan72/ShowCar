@@ -4,7 +4,7 @@ export async function fetchCars() {
     "X-RapidAPI-Host": process.env.X_RAPID_API_HOST,
   };
   const response = await fetch(
-    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla`,
+    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera`,
     { headers: headers as HeadersInit }
   );
 
