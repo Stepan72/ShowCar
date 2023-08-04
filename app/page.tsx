@@ -1,4 +1,4 @@
-import { Hero, CustomFilter, SearchBar, CarCard } from "@/components";
+import { Hero, CustomFilter, SearchBar, CarCard, ShowMore } from "@/components";
 import { fetchCars } from "@/utils";
 import { FilterProps } from "@/types";
 import { fuels, yearsOfProduction } from "@/constants";
@@ -38,6 +38,7 @@ export default async function Home({
                 return <CarCard car={car} />;
               })}
             </div>
+            <ShowMore />
           </section>
         ) : (
           <div className="home__error-container">
