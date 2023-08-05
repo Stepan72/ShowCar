@@ -3,8 +3,12 @@ import { CarProps, FilterProps } from "@/types";
 export async function fetchCars(filters: FilterProps) {
   const { manufacturer, year, model, fuel, limit } = filters;
   const headers = {
-    "X-RapidAPI-Key": process.env.X_RAPID_API_KEY,
-    "X-RapidAPI-Host": process.env.X_RAPID_API_HOST,
+    /// For SSR
+    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPID_API_KEY,
+    "X-RapidAPI-Host": process.env.NEXT_PUBLIC_X_RAPID_API_HOST,
+    //// For CSR
+    // "X-RapidAPI-Key": "ea4921db0amsh8fa321818fcf0b5p1ad392jsn5e6fbf6ce855",
+    // "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
   const response = await fetch(
     `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=${model}&make=${manufacturer}&year=${year}&fuel_type=${fuel}&limit=${limit}`,
@@ -35,8 +39,13 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   /// key ...
   const url = new URL("https://cdn.imagin.studio/getimage");
   const { year, make, model } = car;
-  //   url.searchParams.append("customer", process.env.CAR_IMAGES_API_KEY as string);
-  url.searchParams.append("customer", "hrjavascript-mastery");
+  /// SSR
+  url.searchParams.append(
+    "customer",
+    process.env.NEXT_PUBLIC_CAR_IMAGES_API_KEY as string
+  );
+  /// CSR
+  // url.searchParams.append("customer", "hrjavascript-mastery");
 
   url.searchParams.append("make", make);
   url.searchParams.append("modelFamily", model.split(" ")[0]);
