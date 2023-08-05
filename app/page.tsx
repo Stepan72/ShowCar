@@ -16,6 +16,7 @@ export default async function Home({
     limit: searchParams.limit || 10,
   });
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+
   return (
     <main className="overflow-hidden">
       <Hero />
@@ -38,7 +39,10 @@ export default async function Home({
                 return <CarCard car={car} />;
               })}
             </div>
-            <ShowMore />
+            <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
+            />
           </section>
         ) : (
           <div className="home__error-container">

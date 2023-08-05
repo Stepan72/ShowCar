@@ -23,7 +23,6 @@ function SearchManufacturer({
   function onChangeHandler(e: ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value);
   }
-  console.log(manufacturer);
   return (
     <div className="search-manufacturer">
       <Combobox value={manufacturer} onChange={setManufacturer}>
